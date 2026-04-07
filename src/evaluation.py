@@ -17,22 +17,22 @@ def evaluate_model(model_name, strategy, pipeline, X, y, cv):
             'precision': 'precision',
             'recall': 'recall',
             'f1': 'f1',
-            'roc_auc': 'roc_auc',
-            'pr_auc': 'average_precision'
+            'pr_auc': 'average_precision',
+            'roc_auc': 'roc_auc'
         }
     )
-    
+
     result = {
-    "Model": model_name,
-    "Strategy": strategy,
-    "Accuracy": round(scores['test_accuracy'].mean(), 4),
-    "Precision": round(scores['test_precision'].mean(), 4),
-    "Recall": round(scores['test_recall'].mean(), 4),
-    "F1": round(scores['test_f1'].mean(), 4),
-    "ROC-AUC": round(scores['test_roc_auc'].mean(), 4),
-    "PR-AUC": round(scores['test_pr_auc'].mean(), 4)
+        "Model": model_name,
+        "Strategy": strategy,
+        "Accuracy": f"{scores['test_accuracy'].mean():.4f} ± {scores['test_accuracy'].std():.4f}",
+        "Precision": f"{scores['test_precision'].mean():.4f} ± {scores['test_precision'].std():.4f}",
+        "Recall": f"{scores['test_recall'].mean():.4f} ± {scores['test_recall'].std():.4f}",
+        "F1": f"{scores['test_f1'].mean():.4f} ± {scores['test_f1'].std():.4f}",
+        "PR-AUC": f"{scores['test_pr_auc'].mean():.4f} ± {scores['test_pr_auc'].std():.4f}",
+        "ROC-AUC": f"{scores['test_roc_auc'].mean():.4f} ± {scores['test_roc_auc'].std():.4f}"
     }
-    
+
     return result
 
 def save_results(new_results):
